@@ -22,8 +22,6 @@ export default function Routes() {
             iconName = focused ? "home" : "home-outline";
           } else if (route.name === "Journal") {
             iconName = focused ? "journal" : "journal-outline";
-            //   } else if (route.name === "New") {
-            //     iconName = focused ? "add-circle" : "add-circle-outline";
           } else if (route.name === "Habit") {
             iconName = focused ? "checkbox" : "checkbox-outline";
           } else if (route.name === "Settings") {
