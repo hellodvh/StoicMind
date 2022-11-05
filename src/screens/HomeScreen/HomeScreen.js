@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { View, Text, StyleSheet, ImageBackground, ScrollView } from "react-native";
+import { View, Text, StyleSheet, ImageBackground, ScrollView, ActivityIndicator, Image } from "react-native";
 
 export default function HomeScreen() {
 
@@ -19,19 +19,24 @@ export default function HomeScreen() {
   },[])
 
   return (
+    
     <View style={styles.container}>
+      <Image style={styles.headerImage} source={require('../../assets/images/marcusaurelius.png')} />
+      <Text style={styles.headerTitleText}>StoicMind</Text>
       {
-        loading ? <Text>Loading...</Text>:
-        data.map((random)=> (
-          <View style={styles.card}>
+        loading ? <ActivityIndicator size="large" color="#258671"></ActivityIndicator>:
+        data.map((random, index)=> (
+          <View style={styles.card} key={index}>
             <ScrollView style={{margin: 10}}>
-            
+        
               <Text style={{fontSize: 16, fontWeight: "400"}}>"{random.body}"</Text>
               <Text style={{fontSize: 14, fontWeight: "500", marginTop: 2, fontStyle: "italic",color: 'gray'}}>~{random.author}</Text>
+            
             </ScrollView>
           </View>
         ))
       }
+      
     </View>
   );
 }
@@ -42,7 +47,7 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: "center",
     alignItems: "center",
-    backgroundColor: "#FFF3D1",
+    backgroundColor: "#FFFFFF",
   },
   text: {
     fontSize: 22,
@@ -54,11 +59,21 @@ const styles = StyleSheet.create({
     padding: 5,
     marginHorizontal: 2,
     borderColor: "#E2E2E2",
-    borderWidth: 1,
+    borderWidth: 2,
     borderRadius: 20,
-    backgroundColor: "white",
+    backgroundColor: "#FFF3D1",
     justifyContent: "center",
     alignItems: "center",
-    
+  },
+  headerImage: {
+    height: 200,
+    width: 200,
+    justifyContent: "center",
+
+  },
+  headerTitleText: {
+    fontSize: 38,
+    fontWeight: "bold",
+    paddingBottom: 100,
   }
 });

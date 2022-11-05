@@ -4,7 +4,7 @@ import { View, Text, StyleSheet } from "react-native";
 export default function JournalScreen() {
   return (
     <View style={styles.container}>
-      <Text style={styles.text}>JournalScreen</Text>
+      <Text style={styles.text}>Journal Screen</Text>
     </View>
   );
 }

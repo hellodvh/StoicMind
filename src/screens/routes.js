@@ -33,13 +33,23 @@ export default function Routes() {
         tabBarInactiveTintColor: "#B3E4C5",
       })}
     >
-      <Tab.Screen name="Home" component={HomeScreen} />
-      <Tab.Screen name="Journal" component={JournalScreen} />
+      <Tab.Screen
+        name="Home"
+        component={HomeScreen}
+        options={{ headerShown: false }}
+      />
+
+      <Tab.Screen
+        name="Journal"
+        component={JournalScreen}
+        options={{ headerShown: false }}
+      />
 
       <Tab.Screen
         name="New"
         component={NewScreen}
         options={{
+          headerShown: false,
           tabBarLabel: "",
           tabBarIcon: ({ focused, size, color }) => (
             <ButtonNew size={size} color={color} focused={focused} />
@@ -47,8 +57,17 @@ export default function Routes() {
         }}
       />
 
-      <Tab.Screen name="Habit" component={HabitScreen} />
-      <Tab.Screen name="Settings" component={SettingsScreen} />
+      <Tab.Screen
+        name="Habit"
+        component={HabitScreen}
+        options={{ headerShown: false }}
+      />
+
+      <Tab.Screen
+        name="Settings"
+        component={SettingsScreen}
+        options={{ headerShown: false }}
+      />
     </Tab.Navigator>
   );
 }
