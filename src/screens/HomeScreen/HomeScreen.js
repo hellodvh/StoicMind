@@ -29,8 +29,8 @@ export default function HomeScreen() {
           <View style={styles.card} key={index}>
             <ScrollView style={{margin: 10}}>
         
-              <Text style={{fontSize: 16, fontWeight: "400"}}>"{random.body}"</Text>
-              <Text style={{fontSize: 14, fontWeight: "500", marginTop: 2, fontStyle: "italic",color: 'gray'}}>~{random.author}</Text>
+              <Text style={{fontSize: 16, fontWeight: "400", fontFamily: "AndadaProRegular"}}>"{random.body}"</Text>
+              <Text style={{fontSize: 14, fontWeight: "500", marginTop: 2, fontFamily: "JetBrainsMonoLight", fontStyle: "italic",color: 'gray'}}>~{random.author}</Text>
             
             </ScrollView>
           </View>
@@ -72,8 +72,8 @@ const styles = StyleSheet.create({
 
   },
   headerTitleText: {
-    fontSize: 38,
-    fontWeight: "bold",
+    fontSize: 36,
+    fontFamily: "JetBrainsMonoRegular",
     paddingBottom: 100,
   }
 });
