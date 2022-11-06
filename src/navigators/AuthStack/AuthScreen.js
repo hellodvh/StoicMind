@@ -5,12 +5,12 @@ export default function AuthScreen({onAuthenticate}) {
     return(
         <View>
             <Image source={marcusImage} style={styles.image}/>
-            <Text style={styles.title}>EXPENIO</Text>
-            <Text style={styles.description}>Going cashless has never been this easier with the world’s most leading expense manager.</Text>
+            <Text style={styles.title}>StoicMind</Text>
+            <Text style={styles.description}>A.I. Powered Journal</Text>
             <TouchableOpacity 
                 onPress={onAuthenticate}
                 style={styles.btn}>
-                <Text style={styles.text}>Login</Text>
+                <Text style={styles.text}>Authenticate</Text>
             </TouchableOpacity>
         </View>
     )
@@ -22,13 +22,16 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         justifyContent: 'center',
         alignSelf: 'center',
-        backgroundColor: '#0893FC',
+        backgroundColor: '#258671',
         padding: 10,
-        borderRadius: 5,
+        borderRadius: 10,
     },
     image: {
-        width: 400,
-        height: 461,
+        width: 200,
+        height: 200,
+        alignItems: 'center',
+        justifyContent: 'center',
+        alignSelf: 'center',
     },
     text: {
         color: '#fff',
@@ -36,13 +39,14 @@ const styles = StyleSheet.create({
         fontWeight: '500',
     },
     title: {
-        fontSize: 50,
-        fontWeight: '400',
+        fontSize: 38,
+        fontFamily: "AndadaProMedium",
         marginVertical: 30,
         textAlign: 'center',
     },
     description: {
         fontSize: 18,
+        fontFamily: "JetBrainsMonoLight",
         color: 'gray',
         textAlign: 'center',
         marginHorizontal: 20,
