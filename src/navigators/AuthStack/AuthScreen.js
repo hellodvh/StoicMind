@@ -1,11 +1,11 @@
 import {View, Text, TouchableOpacity, StyleSheet, Image } from 'react-native';
-const marcusImage = require('../../assets/images/marcusaurelius.png');
+const splashImage = require('../../assets/images/splash.png');
 
 export default function AuthScreen({onAuthenticate}) {
     return(
         <View>
-            <Image source={marcusImage} style={styles.image}/>
-            <Text style={styles.title}>StoicMind</Text>
+            <Image source={splashImage} style={styles.image}/>
+        
             <Text style={styles.description}>A.I. Powered Journal</Text>
             <TouchableOpacity 
                 onPress={onAuthenticate}
@@ -28,28 +28,24 @@ const styles = StyleSheet.create({
     },
     image: {
         width: 200,
-        height: 200,
-        alignItems: 'center',
+        padding: 10,
+        alignItems: "center",
         justifyContent: 'center',
-        alignSelf: 'center',
+        alignSelf: "center",
+        resizeMode: "contain"
     },
     text: {
         color: '#fff',
         fontSize: 20,
         fontWeight: '500',
     },
-    title: {
-        fontSize: 38,
-        fontFamily: "AndadaProMedium",
-        marginVertical: 30,
-        textAlign: 'center',
-    },
     description: {
         fontSize: 18,
         fontFamily: "JetBrainsMonoLight",
+        justifyContent: "center",
         color: 'gray',
         textAlign: 'center',
-        marginHorizontal: 20,
-        marginBottom: 50,
+        marginHorizontal: 5,
+        bottom: 50,
     }
 })

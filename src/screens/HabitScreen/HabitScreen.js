@@ -5,8 +5,8 @@ import SentimentAnalyzer from "../../components/SentimentAnalyzer";
 export default function HabitScreen() {
   return (
     <View style={styles.container}>
-      {/* <Text style={styles.text}>Habit Screen</Text> */}
-      <SentimentAnalyzer/>
+      <Text style={styles.text}>Habit Tracker</Text>
+      
     </View>
   );
 }

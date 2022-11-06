@@ -1,10 +1,10 @@
 import React, { useState } from "react";
 import {
   View,
-  ScrollView,
   KeyboardAvoidingView,
   Alert,
   SafeAreaView,
+  ScrollView,
   TextInput,
   Text,
   TouchableOpacity,
@@ -29,7 +29,7 @@ const CreateJournal = ({ navigation }) => {
       alert("Please fill in the journal title!");
       return;
     }
-    if (!journalText) {
+    else if (!journalText) {
       alert("Please fill in the journal text!");
       return;
     }
@@ -91,7 +91,7 @@ const CreateJournal = ({ navigation }) => {
               style={{ padding: 5 }}
             />
 
-            <TouchableOpacity onPress={create_journal}></TouchableOpacity>
+            <TouchableOpacity onPress={create_journal}><Text>Save</Text></TouchableOpacity>
           </KeyboardAvoidingView>
         </ScrollView>
       </View>

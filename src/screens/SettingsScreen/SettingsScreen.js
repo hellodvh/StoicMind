@@ -2,9 +2,11 @@ import React from "react";
 import { View, Text, StyleSheet, TouchableOpacity } from "react-native";
 
 export default function SettingsScreen({ setIsAuthenticated }) {
+
   return (
+
     <View style={styles.container}>
-      <Text style={styles.text}>Settings Screen</Text>
+      <Text style={styles.text}>Settings</Text>
 
       <TouchableOpacity
         onPress={() => setIsAuthenticated(false)}

@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { FlatList, Text, View, SafeAreaView, StyleSheet } from "react-native";
-import { DatabaseConnection } from "../database/database-connection";
+import { DatabaseConnection } from "../../database/DatabaseConnection";
 
 //Establish connection to the database
 const db = DatabaseConnection.getConnection();
@@ -48,11 +48,11 @@ const ViewAllJournal = () => {
 
   return (
     <SafeAreaView style={{ flex: 1 }}>
-      <View style={{ flex: 1, backgroundColor: "#FFFFFF" }}>
+      <View style={{ flex: 1 }}>
         <View style={{ flex: 1 }}>
           <FlatList
             style={{ marginTop: 30 }}
-            contentContainerStyle={{ paddingHorizontal: 20 }}
+            contentContainerStyle={{ paddingHorizontal: 5 }}
             data={flatListItems}
             keyExtractor={(item, index) => index.toString()}
             renderItem={({ item }) => listItemView(item)}
@@ -68,11 +68,12 @@ const styles = StyleSheet.create({
   textHeader: {
     color: "#121212",
     fontSize: 14,
-    fontWeight: "800",
+    fontFamily: "JetBrainsMonoSemiBold"
   },
   textBottom: {
     color: "#121212",
     fontSize: 20,
+    fontFamily: "JetBrainsMonoMedium"
   },
 });
 
