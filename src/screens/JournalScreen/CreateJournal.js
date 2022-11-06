@@ -62,7 +62,7 @@ const CreateJournal = ({ navigation }) => {
 
   return (
     <SafeAreaView style={{ flex: 1 }}>
-      <View style={{ flex: 1, backgroundColor: "#FFF3D1" }}>
+      <View style={{ flex: 1, backgroundColor: "#F2F2F2" }}>
         <ScrollView keyboardShouldPersistTaps="handled">
           <KeyboardAvoidingView
             behavior="padding"

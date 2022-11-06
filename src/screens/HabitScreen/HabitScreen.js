@@ -1,10 +1,12 @@
 import React from "react";
 import { View, Text, StyleSheet } from "react-native";
+import SentimentAnalyzer from "../../components/SentimentAnalyzer";
 
 export default function HabitScreen() {
   return (
     <View style={styles.container}>
-      <Text style={styles.text}>Habit Screen</Text>
+      {/* <Text style={styles.text}>Habit Screen</Text> */}
+      <SentimentAnalyzer/>
     </View>
   );
 }
@@ -15,10 +17,10 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: "center",
     alignItems: "center",
-    backgroundColor: "#FFF3D1",
+    backgroundColor: "#F2F2F2",
   },
   text: {
     fontSize: 22,
-    fontWeight: "bold",
+    fontFamily: "AndadaProSemiBold"
   },
 });

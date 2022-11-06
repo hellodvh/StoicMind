@@ -15,10 +15,10 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: "center",
     alignItems: "center",
-    backgroundColor: "#FFF3D1",
+    backgroundColor: "#F2F2F2",
   },
-  text: {
-    fontSize: 22,
-    fontWeight: "bold",
-  },
+    text: {
+      fontSize: 22,
+      fontFamily: "AndadaProSemiBold"
+    },
 });

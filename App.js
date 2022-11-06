@@ -3,14 +3,12 @@ import Routes from "./src/screens/routes";
 import { useFonts } from "expo-font";
 import * as SplashScreen from "expo-splash-screen";
 import { useCallback, useEffect, useState } from "react";
-import { StyleSheet, Text, View } from 'react-native';
+import { StyleSheet, Text, View } from "react-native";
 
-import AuthScreen from './src/navigators/AuthStack/AuthScreen';
-import AppScreen from './src/navigators/AppStack/AppScreen'
-import * as LocalAuthentication from 'expo-local-authentication';
+import AuthScreen from "./src/navigators/AuthStack/AuthScreen";
+import * as LocalAuthentication from "expo-local-authentication";
 
 export default function App() {
-
   const [isBiometricSupported, setIsBiometricSupported] = useState(false);
   const [isAuthenticated, setIsAuthenticated] = useState(false);
 
@@ -48,23 +46,21 @@ export default function App() {
   if (!fontsLoaded) return null;
 
   return (
-    // <NavigationContainer>
-    //   <Routes/>
-    // </NavigationContainer>
-
-    <View style={styles.container}>
-      {isAuthenticated ? (
-        <AppScreen setIsAuthenticated={setIsAuthenticated} />
-      ) : (
-        <AuthScreen onAuthenticate={onAuthenticate} />
-      )}
-    </View>
+    <NavigationContainer>
+      <View style={styles.container}>
+        {isAuthenticated ? (
+          <Routes setIsAuthenticated={setIsAuthenticated} />
+        ) : (
+          <AuthScreen onAuthenticate={onAuthenticate} />
+        )}
+      </View>
+    </NavigationContainer>
   );
 }
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#fff',
+    backgroundColor: "#fff",
   },
 });
