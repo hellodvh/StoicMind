@@ -1,51 +1,69 @@
-import React, { Component } from "react";
-//import { useState } from "react";
+import React from "react";
+import { useState, useRef } from "react";
 import Sentiment from "sentiment";
-import { View, Text, TextInput } from "react-native";
+import { View, Text, TextInput, TouchableOpacity, StyleSheet } from "react-native";
 
-const sentiment = new Sentiment();
+export default function SentimentAnalyzer() {
+  const sentiment = useRef();
+  const [result, setResult] = useState(null);
 
-class SentimentAnalyzer extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      sentimentScore: null,
-      generalSentiment: null,
-    };
-    this.findSentiment = this.findSentiment.bind(this);
-  }
+  const checkSentiment = new Sentiment();
 
-  findSentiment(event) {
-    const result = sentiment.analyze(event.target.value);
-    this.setState({
-      sentimentScore: result.score,
-    });
-    if (result.score < 0) {
-      this.setState({
-        generalSentiment: "Negative",
-      });
-    } else if (result.score > 0) {
-      this.setState({
-        generalSentiment: "Positive",
-      });
-    } else {
-      this.setState({
-        generalSentiment: "Neutral",
-      });
+  function getSentimentAnalyze() {
+    if (sentiment.current.value !== "") {
+      console.log(sentiment);
+      setResult(checkSentiment.analyze([sentiment.current.value]));
     }
   }
 
-  render() {
-    return (
+  // function clearSentiment() {
+  //   sentiment.current.value = "";
+  //   setResult(null);
+  // }
+
+  return (
+    <View>
+      <Text style={{ fontSize: 22, fontWeight: "400"}}>Text Sentiment Analysis</Text>
+      <TextInput style={styles.textInput} ref={sentiment}></TextInput>
       <View>
-        <Text>Text Sentiment Analysis</Text>
-        <Text>Enter text for real-time analysis:</Text>
-        <TextInput onChange={this.findSentiment}></TextInput>
-        <Text>Sentiment Score: {this.state.sentimentScore}</Text>
-        <Text>General Sentiment: {this.state.generalSentiment}</Text>
+        
+        <TouchableOpacity style={styles.btn} onPress={getSentimentAnalyze}><Text style={styles.btnText}>Analyze</Text></TouchableOpacity>
+        
+        {/* <TouchableOpacity style={styles.btn} onPress={clearSentiment}><Text style={styles.btnText}>Clear</Text></TouchableOpacity> */}
       </View>
-    );
-  }
+      
+      <Text>{result}</Text>
+    </View>
+  );
 }
 
-export default SentimentAnalyzer;
+const styles = StyleSheet.create({
+
+  btn:{
+    width: 200,
+    alignItems: "center",
+    justifyContent: "center",
+    alignSelf: "center",
+    backgroundColor: "#258671",
+    padding: 10,
+    marginTop: 50,
+    borderRadius: 10,
+  },
+  btnText: {
+    color: "#fff",
+    fontSize: 20,
+    fontWeight: "500",
+  },
+
+  textInput:{
+    padding: 10,
+    marginTop: 10,
+    marginLeft: 10,
+    marginRight: 10,
+    borderColor: "#E2E2E2",
+    backgroundColor:"#FFFFFF",
+    borderWidth: 1,
+    borderRadius: 20,
+  }
+
+})
