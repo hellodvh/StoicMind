@@ -2,9 +2,37 @@ import { NavigationContainer } from "@react-navigation/native";
 import Routes from "./src/screens/routes";
 import { useFonts } from "expo-font";
 import * as SplashScreen from "expo-splash-screen";
-import { useCallback, useEffect } from "react";
+import { useCallback, useEffect, useState } from "react";
+import { StyleSheet, Text, View } from 'react-native';
+
+import AuthScreen from './src/navigators/AuthStack/AuthScreen';
+import AppScreen from './src/navigators/AppStack/AppScreen'
+import * as LocalAuthentication from 'expo-local-authentication';
 
 export default function App() {
+
+  const [isBiometricSupported, setIsBiometricSupported] = useState(false);
+  const [isAuthenticated, setIsAuthenticated] = useState(false);
+
+  // Check if hardware supports biometrics
+  useEffect(() => {
+    (async () => {
+      const compatible = await LocalAuthentication.hasHardwareAsync();
+      setIsBiometricSupported(compatible);
+    })();
+  });
+
+  function onAuthenticate() {
+    const auth = LocalAuthentication.authenticateAsync({
+      promptMessage: "Authenticate",
+      fallbackLabel: "Enter Password",
+    });
+    auth.then((result) => {
+      setIsAuthenticated(result.success);
+      console.log(result);
+    });
+  }
+
   const [fontsLoaded] = useFonts({
     AndadaProBold: require("./src/assets/fonts/AndadaPro-Bold.ttf"),
     AndadaProMedium: require("./src/assets/fonts/AndadaPro-Medium.ttf"),
@@ -17,11 +45,26 @@ export default function App() {
     JetBrainsMonoSemiBold: require("./src/assets/fonts/JetBrainsMono-SemiBold.ttf"),
   });
 
-  if(!fontsLoaded) return null;
+  if (!fontsLoaded) return null;
 
   return (
-    <NavigationContainer>
-      <Routes/>
-    </NavigationContainer>
+    // <NavigationContainer>
+    //   <Routes/>
+    // </NavigationContainer>
+
+    <View style={styles.container}>
+      {isAuthenticated ? (
+        <AppScreen setIsAuthenticated={setIsAuthenticated} />
+      ) : (
+        <AuthScreen onAuthenticate={onAuthenticate} />
+      )}
+    </View>
   );
 }
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    backgroundColor: '#fff',
+  },
+});
