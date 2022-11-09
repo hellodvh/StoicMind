@@ -17,13 +17,16 @@
 </br>
    
   <a href="https://github.com/hellodvh/GoStep">
-    <img src="Images/Icon.png" alt="Logo" width="140" height="140">
+    <img src="Screenshots/logo.png" alt="Logo" width="300">
   </a>
   
   <h3 align="center">StoicMind</h3>
 
   <p align="center">
-      ---
+  Stoic Mindset: is a mobile app for Android & iOS that utilises the ancient philosophy of stoicism and the habit of daily journal writing. This app seeks to help users who are battling with depression and anxiety by allowing the user to understand their daily journaling by providing the sentiment of each text. 
+  This app makes use of Artificial Intelligence to analyse text and provide feedback on the postive or negative sentiment the user has expressed.
+  The Stoics where known for journaling and practicing emotional intelligence. Journaling is a proven way of dealing ones thoughts and emotions.
+  
 <br>
       <a href="https://github.com/hellodvh/StoicMind/"><strong>Explore the docs »</strong></a>
       <br />
@@ -130,7 +133,7 @@ Run the following in the command-line to install all the required dependencies:
 
 ### Features
 
-### Onboarding Screens
+### Splash Screen
 
 ![image2][image2]
 
@@ -276,16 +279,16 @@ Distributed under the MIT License. See `LICENSE` for more information.\
 
 
 <!-- MARKDOWN LINKS & IMAGES -->
-[image1]: Images/Image1.png
-[image2]: Images/Image2.png
-[image3]: Images/Image3.png
-[image4]: Images/Image4.png
-[image5]: Images/Image5.png
-[image6]: Images/Image6.png
-[image7]: Images/Image7.png
-[image8]: Images/Image8.png
-[image9]: Images/Image9.png
-[image10]: Images/Image10.png
-[image11]: Images/Image11.png
+[image1]: /Screenshots/image1.png
+[image2]: /Screenshots/image2.png
+[image3]: /Screenshots/image3.png
+[image4]: /Screenshots/image4.png
+[image5]: /Screenshots/image5.png
+[image6]: /Screenshots/image6.png
+[image7]: /Screenshots/image7.png
+[image8]: /Screenshots/image8.png
+[image9]: /Screenshots/image9.png
+[image10]: /Screenshots/image10.png
+[image11]: /Screenshots/image11.png
 
  
