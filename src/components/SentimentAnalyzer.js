@@ -1,3 +1,7 @@
+/*
+/ Sentiment pkg - SentimentAnalyzer not in use!!!
+*/
+
 import React from "react";
 import { useState, useRef } from "react";
 import Sentiment from "sentiment";
@@ -15,12 +19,10 @@ export default function SentimentAnalyzer() {
       setResult(checkSentiment.analyze([sentiment.current.value]));
     }
   }
-
   // function clearSentiment() {
   //   sentiment.current.value = "";
   //   setResult(null);
   // }
-
   return (
     <View>
       <Text style={{ fontSize: 22, fontWeight: "400"}}>Text Sentiment Analysis</Text>

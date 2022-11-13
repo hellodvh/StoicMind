@@ -1,3 +1,8 @@
+
+/*
+/ Sentiment pkg - SentimentAnalysis not in use!!!
+*/
+
 import React from "react";
 import { View, Text } from "react-native";
 

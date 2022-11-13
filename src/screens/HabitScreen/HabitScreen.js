@@ -1,6 +1,5 @@
 import React from "react";
 import { View, Text, StyleSheet } from "react-native";
-import SentimentAnalyzer from "../../components/SentimentAnalyzer";
 
 export default function HabitScreen() {
   return (
