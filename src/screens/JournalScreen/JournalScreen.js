@@ -1,5 +1,13 @@
 import React, { useState, useEffect } from "react";
-import { FlatList, Text, View, SafeAreaView, StyleSheet, Image } from "react-native";
+import {
+  FlatList,
+  Text,
+  View,
+  SafeAreaView,
+  StyleSheet,
+  Image,
+  ScrollView,
+} from "react-native";
 
 import { DatabaseConnection } from "../../database/DatabaseConnection";
 const db = DatabaseConnection.getConnection();
@@ -20,35 +28,32 @@ const JournalScreen = () => {
 
   let listItemView = (item) => {
     return (
-      <View
-        key={item.journal_id}
-        style={styles.journalCard}
-      >
+      <View key={item.journal_id} style={styles.journalCard}>
         <View style={styles.journalCardTop}>
-        <Text style={styles.journalId}>{item.journal_id}</Text>
-        <Image
-        style={styles.journalSentiment}
-        source={require("../../assets/images/neutral.png")}
-      />
+          <Text style={styles.journalId}>{item.journal_id}</Text>
+          <Image
+            style={styles.journalSentiment}
+            source={require("../../assets/images/neutral.png")}
+          />
         </View>
-        
+
         <Text style={styles.journalText}>{item.journal_text}</Text>
         <Text style={styles.journalText}>{item.journal_sentiment}</Text>
-        
       </View>
     );
   };
 
   return (
-    <SafeAreaView style={{flex: 1}}>
-      <View style={styles.container}>
-        
-        <FlatList
-          data={flatListItems}
-          keyExtractor={(item, index) => index.toString()}
-          renderItem={({item}) => listItemView(item)}
-        />
-      </View>
+    <SafeAreaView style={{ flex: 1 }}>
+      
+        <View style={styles.container}>
+          <FlatList
+            data={flatListItems}
+            keyExtractor={(item, index) => index.toString()}
+            renderItem={({ item }) => listItemView(item)}
+          />
+        </View>
+
     </SafeAreaView>
   );
 };
@@ -64,7 +69,7 @@ const styles = StyleSheet.create({
   },
   journalCard: {
     minHeight: 150,
-    backgroundColor: "#FFFFFF", 
+    backgroundColor: "#FFFFFF",
     borderColor: "#E2E2E2",
     borderWidth: 1,
     borderRadius: 20,
@@ -81,13 +86,11 @@ const styles = StyleSheet.create({
     color: "#666666",
     fontFamily: "AndadaProSemiBold",
     fontSize: 12,
-
   },
   journalText: {
     alignSelf: "center",
-
   },
   journalSentiment: {
     alignSelf: "flex-end",
-  }
+  },
 });

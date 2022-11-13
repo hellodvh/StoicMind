@@ -19,112 +19,112 @@ import { DatabaseConnection } from "../../database/DatabaseConnection";
 const db = DatabaseConnection.getConnection();
 
 //Tensorflow
-import * as tf from '@tensorflow/tfjs';
+//import * as tf from '@tensorflow/tfjs';
 //Convolution Neural Network(CNN) trained dataset.
 
 const CreateJournal = () => {
   const [journalText, setJournalText] = useState('');
-  const [journalSentiment, setJournalSentiment] = useState('');
+  //const [journalSentiment, setJournalSentiment] = useState('');
   //const [testText, setText] = useState('');
 
   //Load model and metadata.
   //Tensorflow Sentiment Model and Metadata url.
-  const url = {
-    model: 'https://storage.googleapis.com/tfjs-models/tfjs/sentiment_cnn_v1/model.json',
-    metadata: 'https://storage.googleapis.com/tfjs-models/tfjs/sentiment_cnn_v1/metadata.json'
-  };
+  // const url = {
+  //   model: 'https://storage.googleapis.com/tfjs-models/tfjs/sentiment_cnn_v1/model.json',
+  //   metadata: 'https://storage.googleapis.com/tfjs-models/tfjs/sentiment_cnn_v1/metadata.json'
+  // };
 
   //Tensorflow - Load model.
-  async function loadModel(url) {
-    try {
-      const model = await tf.loadLayersModel(url.model);
-      setModel(model);
-    } catch (err) {
-      console.log(err);
-    }
-  }
+  // async function loadModel(url) {
+  //   try {
+  //     const model = await tf.loadLayersModel(url.model);
+  //     setModel(model);
+  //   } catch (err) {
+  //     console.log(err);
+  //   }
+  // }
 
   //Tensorflow - Load metadata.
-  async function loadMetadata(url) {
-    try {
-      const metadataJson = await fetch(url.metadata);
-      const metadata = await metadataJson.json();
-      setMetadata(metadata);
-    } catch (err) {
-      console.log(err);
-    }
-  }
+  // async function loadMetadata(url) {
+  //   try {
+  //     const metadataJson = await fetch(url.metadata);
+  //     const metadata = await metadataJson.json();
+  //     setMetadata(metadata);
+  //   } catch (err) {
+  //     console.log(err);
+  //   }
+  // }
 
   //Tensorflow - React Hook
-  const [metadata, setMetadata] = useState();
-  const [model, setModel] = useState();
-  const [testScore, setScore] = useState();
-  const [trimedText, setTrim] = useState();
-  const [seqText, setSeq] = useState();
-  const [padText, setPad] = useState();
-  const [inputText, setInput] = useState();
+  // const [metadata, setMetadata] = useState();
+  // const [model, setModel] = useState();
+  // const [testScore, setScore] = useState();
+  // const [trimedText, setTrim] = useState();
+  // const [seqText, setSeq] = useState();
+  // const [padText, setPad] = useState();
+  // const [inputText, setInput] = useState();
 
-  useEffect(() => {
-    tf.ready().then(() => {
-      loadModel(url)
-      loadMetadata(url)
-    });
-  }, [])
+  // useEffect(() => {
+  //   tf.ready().then(() => {
+  //     loadModel(url)
+  //     loadMetadata(url)
+  //   });
+  // }, [])
 
   //Tensorflow - Get Sentiment score function.
-  const getSentimentScore =(text) => {
-    console.log(text)
-    //Convert sentences to tensor input.
-    //Tokenize each word in the sentences.
-    const inputText = text.trim().toLowerCase().replace(/(\.|\,|\!)/g, '').split(' ');
-    setTrim(inputText)
-    console.log(inputText)
+  // const getSentimentScore =(text) => {
+  //   console.log(text)
+  //   //Convert sentences to tensor input.
+  //   //Tokenize each word in the sentences.
+  //   const inputText = text.trim().toLowerCase().replace(/(\.|\,|\!)/g, '').split(' '); //TypeError: text.trim is not a function. (In 'text.trim()', 'text.trim' is undefined)
+  //   setTrim(inputText)
+  //   console.log(inputText)
 
-    //Convert the alphabetical token to numerical token using metadata
-    const OOV_INDEX = 2;
-    const sequence = inputText.map(word => {
-      let wordIndex = metadata.word_index[word] + metadata.index_from;
-      if (wordIndex > metadata.vocabulary_size) {
-        wordIndex = OOV_INDEX;
-      }
-      return wordIndex;
-    });
+  //   //Convert the alphabetical token to numerical token using metadata
+  //   const OOV_INDEX = 2;
+  //   const sequence = inputText.map(word => {
+  //     let wordIndex = metadata.word_index[word] + metadata.index_from;
+  //     if (wordIndex > metadata.vocabulary_size) {
+  //       wordIndex = OOV_INDEX;
+  //     }
+  //     return wordIndex;
+  //   });
 
-    //Fix the sequence into fix length (truncating and padding) via padSequences function.
-    const PAD_INDEX = 0
-    const padSequences = (sequences, maxLen, padding = 'pre', truncating = 'pre', value = PAD_INDEX) => {
-      return sequences.map(seq => {
-        if (seq.length > maxLen) {
-          if (truncating === 'pre') {
-            seq.splice(0, seq.length - maxLen);
-          } else {
-            seq.splice(maxLen, seq.length - maxLen);
-          }
-        }
-        if (seq.length < maxLen) {
-          const pad = [];
-          for (let i = 0; i < maxLen - seq.length; ++i) {
-            pad.push(value);
-          }
-          if (padding === 'pre') {
-            seq = pad.concat(seq);
-          } else {
-            seq = seq.concat(pad);
-          }
-        }
-        return seq;
-      });
-    }
-    const paddedSequence = padSequences([sequence], metadata.max_len);
-    //Convert the paddedSequence into our tensor2D matrix.
-    const input = tf.tensor2d(paddedSequence, [1, metadata.max_len]);
-    //Load the tensor2D into our model - model.predict
-    const predictOut = model.predict(input);
-    const score = predictOut.dataSync()[0];
-    predictOut.dispose();
-    setScore(score)
-    return score;
-  }
+  //   //Fix the sequence into fix length (truncating and padding) via padSequences function.
+  //   const PAD_INDEX = 0
+  //   const padSequences = (sequences, maxLen, padding = 'pre', truncating = 'pre', value = PAD_INDEX) => {
+  //     return sequences.map(seq => {
+  //       if (seq.length > maxLen) {
+  //         if (truncating === 'pre') {
+  //           seq.splice(0, seq.length - maxLen);
+  //         } else {
+  //           seq.splice(maxLen, seq.length - maxLen);
+  //         }
+  //       }
+  //       if (seq.length < maxLen) {
+  //         const pad = [];
+  //         for (let i = 0; i < maxLen - seq.length; ++i) {
+  //           pad.push(value);
+  //         }
+  //         if (padding === 'pre') {
+  //           seq = pad.concat(seq);
+  //         } else {
+  //           seq = seq.concat(pad);
+  //         }
+  //       }
+  //       return seq;
+  //     });
+  //   }
+  //   const paddedSequence = padSequences([sequence], metadata.max_len);
+  //   //Convert the paddedSequence into our tensor2D matrix.
+  //   const input = tf.tensor2d(paddedSequence, [1, metadata.max_len]);
+  //   //Load the tensor2D into our model - model.predict
+  //   const predictOut = model.predict(input);
+  //   const score = predictOut.dataSync()[0];
+  //   predictOut.dispose();
+  //   setScore(score)
+  //   return score;
+  // }
 
   //SQLite Query
   let create_journal = () => {
@@ -136,8 +136,8 @@ const CreateJournal = () => {
     //SQLite Insert
     db.transaction(function (tx) {
       tx.executeSql(
-        'INSERT INTO table_journal (journal_text, journal_sentiment) VALUES (?,?)', //journal_sentiment ?
-        [journalText, journalSentiment], //journalSentiment
+        'INSERT INTO table_journal (journal_text) VALUES (?)', //journal_sentiment ?
+        [journalText], //journalSentiment
         (tx, results) => {
           console.log("Results", results.rowsAffected);
           if (results.rowsAffected > 0) {
@@ -174,7 +174,8 @@ const CreateJournal = () => {
         <View style={styles.inputBox}>
           <TextInput
             placeholder="Write journal..."
-            onChangeText={(journalText, journalSentiment) => {setJournalText(journalText); setJournalSentiment(journalSentiment)}} //(journalSentiment) = setJournalSentiment(journalSentiment) / testText, setText
+            //onChangeText={(journalText, journalSentiment) => {setJournalText(journalText); setJournalSentiment(journalSentiment)}} //(journalSentiment) = setJournalSentiment(journalSentiment) / testText, setText
+            onChangeText={(journalText) => setJournalText(journalText)}
             maxLength={250}
             numberOfLines={6}
             multiline={true}
@@ -206,14 +207,14 @@ const CreateJournal = () => {
             color="#FFFFFF"
           ></Ionicons>
         </TouchableOpacity> */}
-        {journalSentiment !== "" ?
+        {/* {journalSentiment !== "" ?
         <TouchableOpacity style={styles.btnCalculate} onPress={() => { getSentimentScore(journalSentiment); create_journal();}}>
         <Ionicons name="calculator-outline" color={"black"} size={16} style={styles.btnIcon}></Ionicons>
           <Text style={styles.btnTextCalc}>Calculate</Text>
         </TouchableOpacity>
-        : <></>}
+        : <></>} */}
 
-        <TouchableOpacity style={styles.btnAnalyze} onPress={getSentimentScore}>
+        <TouchableOpacity style={styles.btnAnalyze} onPress={null}> 
         <Ionicons name="analytics-outline" color={"white"} size={16} style={styles.btnIcon}></Ionicons>
           <Text style={styles.btnText}>Analyze</Text>
         </TouchableOpacity>

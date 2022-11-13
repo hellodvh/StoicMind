@@ -5,7 +5,13 @@
 import React from "react";
 import { useState, useRef } from "react";
 import Sentiment from "sentiment";
-import { View, Text, TextInput, TouchableOpacity, StyleSheet } from "react-native";
+import {
+  View,
+  Text,
+  TextInput,
+  TouchableOpacity,
+  StyleSheet,
+} from "react-native";
 
 export default function SentimentAnalyzer() {
   const sentiment = useRef();
@@ -25,23 +31,25 @@ export default function SentimentAnalyzer() {
   // }
   return (
     <View>
-      <Text style={{ fontSize: 22, fontWeight: "400"}}>Text Sentiment Analysis</Text>
+      <Text style={{ fontSize: 22, fontWeight: "400" }}>
+        Text Sentiment Analysis
+      </Text>
       <TextInput style={styles.textInput} ref={sentiment}></TextInput>
       <View>
-        
-        <TouchableOpacity style={styles.btn} onPress={getSentimentAnalyze}><Text style={styles.btnText}>Analyze</Text></TouchableOpacity>
-        
+        <TouchableOpacity style={styles.btn} onPress={getSentimentAnalyze}>
+          <Text style={styles.btnText}>Analyze</Text>
+        </TouchableOpacity>
+
         {/* <TouchableOpacity style={styles.btn} onPress={clearSentiment}><Text style={styles.btnText}>Clear</Text></TouchableOpacity> */}
       </View>
-      
+
       <Text>{result}</Text>
     </View>
   );
 }
 
 const styles = StyleSheet.create({
-
-  btn:{
+  btn: {
     width: 200,
     alignItems: "center",
     justifyContent: "center",
@@ -57,15 +65,14 @@ const styles = StyleSheet.create({
     fontWeight: "500",
   },
 
-  textInput:{
+  textInput: {
     padding: 10,
     marginTop: 10,
     marginLeft: 10,
     marginRight: 10,
     borderColor: "#E2E2E2",
-    backgroundColor:"#FFFFFF",
+    backgroundColor: "#FFFFFF",
     borderWidth: 1,
     borderRadius: 20,
-  }
-
-})
+  },
+});

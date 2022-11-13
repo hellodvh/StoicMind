@@ -24,11 +24,12 @@ export default function HomeScreen() {
         function (tx, res) {
           //console.log("item:", res.rows.length);
           if (res.rows.length == 0) {
-            txn.executeSql("DROP TABLE IF EXISTS table_journal", []);
+            
             txn.executeSql(
-              "CREATE TABLE IF NOT EXISTS table_journal(journal_id INTEGER PRIMARY KEY AUTOINCREMENT, journal_text VARCHAR(250), journal_sentiment VARCHAR(250))",
+              "CREATE TABLE IF NOT EXISTS table_journal(journal_id INTEGER PRIMARY KEY AUTOINCREMENT, journal_text VARCHAR(250))", //journal_sentiment VARCHAR(250)
               []
             );
+            txn.executeSql("DROP TABLE IF EXISTS table_journal", []);
           }
         }
       );
