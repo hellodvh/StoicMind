@@ -2,14 +2,25 @@ import React from "react";
 import { View, Text, StyleSheet, TouchableOpacity } from "react-native";
 import { Ionicons } from "@expo/vector-icons";
 
-export default function SettingsScreen() {
+//SQLite Database
+import { DatabaseConnection } from "../../database/DatabaseConnection";
+//Establish connection to the database
+const db = DatabaseConnection.getConnection();
 
+//SQLite Query
+let delete_journal = () => {
+  //SQLite Delete table_journal onPress function.
+  db.transaction(function (tx) {
+    tx.executeSql('DELETE FROM table_journal');
+  });
+};
+
+export default function SettingsScreen() {
   return (
     <View style={styles.container}>
       <Text style={styles.text}>Settings</Text>
-
       <TouchableOpacity
-        onPress={() => null}
+        onPress={delete_journal}
         style={styles.btn}>
           <Ionicons name="trash-outline" color={"white"} size={16} style={styles.btnIcon}></Ionicons>
         <Text style={styles.btnText}>Delete Data</Text>
